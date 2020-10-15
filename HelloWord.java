@@ -5,6 +5,5 @@ public class HelloWord {
         System.out.println("Cao Dang Sai Gon");
         System.out.println("1. Cao Minh Tuoi");
         System.out.println("2. Lê Chí Cường");
-        System.out.println("3. Nguyễn Trường Thọ");
     }
 }
