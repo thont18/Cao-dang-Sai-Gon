@@ -7,3 +7,7 @@
 	+ Email: cuonglc18.cdsg@saigontech.edu.vn
 	+ Phone: 0765394126
 	+ Facebook URL: https://www.facebook.com/demaurier.anthony.7
+# 3. Nguyễn Trường Thọ:
+	+ Email: tho18.cdsg@saigontech.edu.vn
+	+ Phone: 0396052731
+	+ Facebook URL: https://www.facebook.com/nguyen.tho.94064176/
