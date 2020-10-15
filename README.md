@@ -11,3 +11,7 @@
 	+ Email: tho18.cdsg@saigontech.edu.vn
 	+ Phone: 0396052731
 	+ Facebook URL: https://www.facebook.com/nguyen.tho.94064176/
+# 4. Trần Hoàng Kỳ:
+	+ Email: kyth18.cdsg@saigontech.edu.vn
+	+ Phone: 0935980608
+	+ Facebook URL: https://www.facebook.com/HatKayy
