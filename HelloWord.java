@@ -9,6 +9,6 @@ public class HelloWord {
 	System.out.println("4. Trần Hoàng Kỳ");
         System.out.println("5. Văn Minh Sơn");
 	System.out.println("6.Dang Linh Tam ");
-	1235
+	
     }
 }
