@@ -7,5 +7,6 @@ public class HelloWord {
         System.out.println("2. Lê Chí Cường");
         System.out.println("3. Nguyễn Trường Thọ");
 	    System.out.println("4. Trần Hoàng Kỳ");
+        System.out.println("5. Văn Minh Sơn");
     }
 }
