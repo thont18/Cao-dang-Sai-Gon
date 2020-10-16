@@ -19,3 +19,7 @@
 	+ Email: sonvm18.cdsg@saigontech.edu.vn
 	+ Phone: 0869114042
 	+ Facebook URL: https://www.facebook.com/profile.php?id=100006447044880
+# 6. Dang Linh Tam:
+	+ Email: tamdl19.cdsg@saigontech.edu.vn
+	+ Phone: 0343332903
+	+ Facebook URL: https://www.facebook.com/linh.tam.9655
