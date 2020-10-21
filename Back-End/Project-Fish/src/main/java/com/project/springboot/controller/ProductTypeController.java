@@ -50,7 +50,7 @@ public class ProductTypeController {
 		return productTypeService.save(productTypes);
 	}
 
-	@RequestMapping(value = "/fishTypes/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/fishType/{id}", method = RequestMethod.DELETE)
 	public void deleteProductTypes(@PathVariable("id") Integer id) {
 		ProductType productType = productTypeService.findById(id);
 		productTypeService.delete(productType.getId());
