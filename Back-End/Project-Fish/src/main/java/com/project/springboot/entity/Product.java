@@ -33,10 +33,6 @@ public class Product {
     private String name;
     @Column(columnDefinition = "TEXT")
     private String image;
-    @Column(length = 10)
-    private int price;
-    @Column(length = 50)
-    private String description;
     private double price;
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -48,17 +44,13 @@ public class Product {
 	private String createdBy;
 	@LastModifiedBy
 	private String modifiedBy;
+
+
     @ManyToOne
     @JoinColumn
     private ProductType productType;
-    public Product(Integer id, String proCode, String name, String image, int price, String color, String description, String amount, LocalDateTime date) {
-        this.id = id;
-        this.proCode = proCode;
-        this.name = name;
-        this.image = image;
-        this.price = price;
-        this.description = description;
-    }
+
+
     public Product(Integer id, String proCode, String name, String image, double price, String description,
 			LocalDateTime dateCreated, LocalDateTime dateModified, String createdBy, String modifiedBy,
 			ProductType productType) {
@@ -76,6 +68,7 @@ public class Product {
 		this.productType = productType;
 	}
     
+
 	public Product() {
 		super();
 	}
@@ -116,9 +109,6 @@ public class Product {
 		this.proCode = proCode;
 	}
 
-    public String getDescription() {
-        return description;
-    }
 
 	public String getName() {
 		return name;
@@ -129,7 +119,6 @@ public class Product {
 		this.name = name;
 	}
 
-    public ProductType getProductType() {
 
 	public String getImage() {
 		return image;
