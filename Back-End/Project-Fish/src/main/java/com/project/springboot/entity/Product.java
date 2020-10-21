@@ -30,13 +30,8 @@ public class Product {
     private String image;
     @Column(length = 10)
     private int price;
-    @Column(length = 20)
-    private String color;
-    private String description;
     @Column(length = 50)
-    private String amount;
-    private LocalDateTime date;
-
+    private String description;
 
     @ManyToOne
     @JoinColumn
@@ -51,10 +46,7 @@ public class Product {
         this.name = name;
         this.image = image;
         this.price = price;
-        this.color = color;
         this.description = description;
-        this.amount = amount;
-        this.date = date;
     }
 
     public Integer getId() {
@@ -97,36 +89,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 
     public ProductType getProductType() {
