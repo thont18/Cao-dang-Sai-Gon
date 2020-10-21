@@ -61,9 +61,6 @@ public class Product {
 		this.description = description;
 	}
 
-
-
-
     public Product(Integer id, String proCode, String name, String image, double price, String description,
 			LocalDateTime dateCreated, LocalDateTime dateModified, String createdBy, String modifiedBy,
 			ProductType productType) {
