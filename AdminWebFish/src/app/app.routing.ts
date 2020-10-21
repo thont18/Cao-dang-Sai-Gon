@@ -69,18 +69,6 @@ export const routes: Routes = [
         component: ProductTypesComponent
       },
       {
-        path: 'serviceTypes',
-        component: ServiceTypeComponent
-      }, 
-      {
-        path: 'services',
-        component: ServicesComponent
-      },
-      {
-        path: 'bills',
-        component: BillComponent
-      },
-      {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
       },
