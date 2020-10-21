@@ -31,7 +31,7 @@ import com.project.springboot.services.ProductService;
 import com.project.springboot.services.ProductTypeService;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class ProductController {
 	@Autowired
