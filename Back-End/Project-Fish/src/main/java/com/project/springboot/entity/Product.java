@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "fish")
 public class Product {
-<<<<<<< HEAD
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -38,20 +37,6 @@ public class Product {
 	private double price;
 	@Column(columnDefinition = "TEXT")
 	private String description;
-=======
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;  
-    @Column(length = 200, nullable = false)
-    private String proCode;
-    @Column(length = 200)
-    private String name;
-    @Column(columnDefinition = "TEXT")
-    private String image;
-    private double price;
-    @Column(columnDefinition = "TEXT")
-    private String description;
->>>>>>> 4a298b7e9413450f62dc876d72b8ed13d3e2a1da
 	@CreatedDate
 	private LocalDateTime dateCreated;
 	@LastModifiedDate
@@ -60,7 +45,6 @@ public class Product {
 	private String createdBy;
 	@LastModifiedBy
 	private String modifiedBy;
-<<<<<<< HEAD
 	@ManyToOne
 	@JoinColumn
 	private ProductType productType;
@@ -76,16 +60,6 @@ public class Product {
 	}
 
 	public Product(Integer id, String proCode, String name, String image, double price, String description,
-=======
-
-
-    @ManyToOne
-    @JoinColumn
-    private ProductType productType;
-
-
-    public Product(Integer id, String proCode, String name, String image, double price, String description,
->>>>>>> 4a298b7e9413450f62dc876d72b8ed13d3e2a1da
 			LocalDateTime dateCreated, LocalDateTime dateModified, String createdBy, String modifiedBy,
 			ProductType productType) {
 		super();
@@ -101,10 +75,6 @@ public class Product {
 		this.modifiedBy = modifiedBy;
 		this.productType = productType;
 	}
-<<<<<<< HEAD
-=======
-    
->>>>>>> 4a298b7e9413450f62dc876d72b8ed13d3e2a1da
 
 	public Product() {
 		super();
@@ -142,10 +112,6 @@ public class Product {
 		this.proCode = proCode;
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4a298b7e9413450f62dc876d72b8ed13d3e2a1da
 	public String getName() {
 		return name;
 	}
@@ -154,10 +120,6 @@ public class Product {
 		this.name = name;
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4a298b7e9413450f62dc876d72b8ed13d3e2a1da
 	public String getImage() {
 		return image;
 	}
