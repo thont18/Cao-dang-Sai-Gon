@@ -1,0 +1,117 @@
+<p>service-type works!</p>
+<div class="card border-danger">
+  <div class="card-header table-primary">
+    <span style="font-size: 30px; font-weight: bold;"><i class="fa fa-inbox"></i>Fish types</span>
+  </div>
+
+  <div class="card-body">
+    <div class="my-2 mb-3 mr-4 ml-4">
+      <div class="row">
+        <div class="col-6">
+          <form class="form-inline">
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <input type="text" maxlength="100" autocomplete="off" class="form-control" name="search"
+                  placeholder="Enter Search ?">
+              </div>
+              <button class="btn btn-warning col-sm-2"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-warning float-right" (click)="showAdd()"><i class="fa fa-plus-circle"></i> Add
+            New</button>
+        </div>
+      </div>
+
+    </div>
+    <table class="table table-hover table-striped table-bordered">
+      <thead class="table-primary text-center">
+        <tr>
+          <th>No.</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center"
+          *ngFor="let row of productTypes| paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
+          <th>{{(itemsPerPage * (page - 1)) + (i+1)}}</th>
+          <td>{{row.ptypCode}}</td>
+          <td>{{row.name}}</td>
+          <td>
+            <a href="" class="text-success" title="Repair" (click)="showEdit($event, row.id)"><i class="fa fa-edit"
+                style="font-size: 15px;"></i></a>
+            <a href="" class="text-danger" title="Delete" (click)="delete($event, row.id)"><i class="fa fa-trash"
+                style="font-size: 15px;"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+
+<div bsModal #productTypeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left"><i class="fa fa-google-plus-circle"></i> PRODUCT TYPE
+        </h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" #productTypeForm="ngForm">
+          <div class="col">
+
+            <div class="form-group row" [class.has-error]="productTypeCode.invalid && productTypeCode.touched">
+              <label for="ptypCode" class="col-sm-3 col-form-label control-label">Code: </label>
+
+              <!-- <a *ngIf="productCode.errors?.required" class="text-danger">(Product type is
+                required)</a> -->
+
+              <div class="col-sm-9">
+                <input type="text" maxlength="20" #productTypeCode="ngModel" required autocomplete="off"
+                  class="form-control" name="ptypCode" [(ngModel)]="productType.ptypCode" placeholder="PT-number">
+                <span class="help-block text-danger" *ngIf="productTypeCode.invalid && productTypeCode.touched"> (Code is
+                  required)</span>
+                <span class="help-block text-danger" *ngIf="test() && productTypeCode.touched">Code was used</span>
+              </div>
+
+            </div>
+
+            <!-- <div class="form-group row">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-9"><a *ngIf="productCode.errors?.required" class="text-danger">(Product type is
+                  required)</a></div>
+            </div> -->
+
+            <div class="form-group row" [class.has-error]="productName.invalid && productName.touched">
+              <label for="name" class="col-sm-3 col-form-label">Name: </label>
+              <!-- <a *ngIf="productName.errors?.required" class="text-danger">(Product type is
+                required)</a> -->
+              <div class="col-sm-9">
+                <input type="text" maxlength="20" #productName="ngModel" required autocomplete="off"
+                  class="form-control" name="name" [(ngModel)]="productType.name" placeholder="name">
+                <span class="help-block text-danger" *ngIf="productName.invalid && productName.touched"> (Name is
+                  required)</span>
+              </div>
+            </div>
+          </div>
+          <div class="float-right">
+            <!-- <button type="submit" class="btn btn-success"
+              [ngClass]="{'disabled': productName.errors?.required}"
+              (click)="save()">Save Changes</button> -->
+
+            <button type="submit" class="btn btn-success" [disabled]="productTypeForm.invalid"  (click)="save()">Save Changes</button>
+            <button type="submit" class="btn btn-secondary" (click)="closeModal()">Close </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

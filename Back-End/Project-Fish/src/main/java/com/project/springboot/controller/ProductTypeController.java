@@ -38,12 +38,12 @@ public class ProductTypeController {
 		return productType;
 	}
 
-	@PostMapping("/fishType")
+	@PostMapping("/fishTypes")
 	public ProductType create(@RequestBody ProductType productType) {
 		return productTypeService.save(productType);
 	}
 	
-	@PutMapping("/fishType/{id}")
+	@PutMapping("/fishTypes/{id}")
 	public ProductType updateProductTypes(@PathVariable("id") Integer id,
 			@RequestBody @Validated ProductType productTypes) {
 		productTypeService.findById(id);
