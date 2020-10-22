@@ -1,6 +1,6 @@
 <div class="card border-danger">
   <div class="card-header table-primary">
-    <span style="font-size: 30px; font-weight: bold;"><i class="fa fa-github"></i>Fish</span>
+    <span style="font-size: 30px; font-weight: bold;"><i class="fa fa-github"></i> Fish list</span>
   </div>
   <div class="card-body">
     <div class="my-2 mb-3 mr-4 ml-4">
@@ -35,25 +35,28 @@
 
       </div>
 
-      <table class="table table-hover table-striped table-bordered mt-3">
+      <table class="table table-hover table-striped table-bordered mt-3 table-responsive">
         <thead class="table-primary text-center">
           <tr>
-            <th style="vertical-align: middle; text-align: center;">No.</th>
-            <th style="vertical-align: middle; text-align: center;">Code</th>
-            <th style="vertical-align: middle; text-align: center;">Type</th>
-            <th style="vertical-align: middle; text-align: center;">Name</th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;">No.</th>
+            <th class="text-truncate" (click)="sort('code')" style="vertical-align: middle; text-align: center;">Code <i
+                class="fa fa-sort"></i></th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Type</th>
+            <th class="text-truncate" (click)="sort('name')" style="vertical-align: middle; text-align: center;">Name <i
+                class="fa fa-sort"></i></th>
             <th style="vertical-align: middle; text-align: center;">Image</th>
-            <th style="vertical-align: middle; text-align: center;">Price</th>
-            <th style="vertical-align: middle; text-align: center;">Created By</th>
-            <th style="vertical-align: middle; text-align: center;">Udapted By</th>
-            <th style="vertical-align: middle; text-align: center;">Created Date</th>
-            <th style="vertical-align: middle; text-align: center;">Updated Date</th>
-            <th style="vertical-align: middle; text-align: center;">Edit</th>
+            <th class="text-truncate" (click)="sort('price')" style="vertical-align: middle; text-align: center;">Price <i
+                class="fa fa-sort"></i></th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Created By</th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Updated By</th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Created Date</th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Updated Date</th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Edit</th>
           </tr>
         </thead>
         <tbody>
           <tr class="text-center"
-            *ngFor="let row of products | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
+            *ngFor="let row of products | orderBy : key : reverse | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
             <th style="vertical-align: middle; text-align: center;">{{(itemsPerPage * (page - 1)) + (i+1)}}</th>
             <td style="vertical-align: middle; text-align: center;">{{row.proCode}}</td>
             <td style="vertical-align: middle; text-align: center;">{{row.productType.name}}</td>
@@ -91,19 +94,23 @@
           <form action="" #productForm="ngForm">
             <!-- Code -->
             <div class="col">
-              <div class="form-group row">
+              <div class="form-group row" [class.has-error]="productCode.invalid && productCode.touched">
                 <label for="proCode" class="col-sm-3 col-form-label control-label">Code: </label>
                 <div class="col-sm-9">
                   <input type="text" maxlength="20" #productCode="ngModel" required autocomplete="off"
                     class="form-control" name="proCode" [(ngModel)]="product.proCode" placeholder="P-number">
+                  <span class="help-block text-danger" *ngIf="productCode.invalid && productCode.touched">
+                    (Code is required)</span>
                 </div>
               </div>
               <!-- Name -->
-              <div class="form-group row">
+              <div class="form-group row" [class.has-error]="productName.invalid && productName.touched">
                 <label for="name" class="col-sm-3 col-form-label control-label">Name: </label>
                 <div class="col-sm-9">
                   <input type="text" #productName="ngModel" required maxlength="20" autocomplete="off"
                     class="form-control" name="name" [(ngModel)]="product.name" placeholder="name">
+                  <span class="help-block text-danger" *ngIf="productName.invalid && productName.touched">
+                    (Name is required)</span>
                 </div>
               </div>
               <!-- Hinh -->
@@ -126,20 +133,22 @@
                     </option>
                   </select>
                 </div>
-              </div>  
+              </div>
               <!-- Price -->
-              <div class="form-group row">
+              <div class="form-group row" [class.has-error]="productPrice.invalid && productPrice.touched">
                 <label for="price" class="col-sm-3 col-form-label control-label">Price (VND): </label>
                 <div class="col-sm-9">
-                  <input type="number" #productName="ngModel" required maxlength="20" autocomplete="off"
+                  <input type="number" #productPrice="ngModel" required maxlength="20" autocomplete="off"
                     class="form-control" name="price" [(ngModel)]="product.price" placeholder="name">
+                  <span class="help-block text-danger" *ngIf="productPrice.invalid && productPrice.touched">
+                    (Price is required)</span>
                 </div>
               </div>
               <!-- Description -->
               <div class="form-group row">
                 <label for="description" class="col-sm-3 col-form-label control-label">Description: </label>
                 <div class="col-sm-9">
-                  <textarea type="text" #productName="ngModel" required maxlength="20" autocomplete="off"
+                  <textarea type="text" #productDesc="ngModel" required maxlength="20" autocomplete="off"
                     class="form-control" name="description" [(ngModel)]="product.description" placeholder="description">
                   </textarea>
                 </div>
@@ -147,7 +156,7 @@
 
             </div>
             <div class="float-right">
-              <button type="submit" class="btn btn-success"  (click)="save()">Save
+              <button type="submit" class="btn btn-success" (click)="save()">Save
                 Changes</button>
               <button type="submit" class="btn btn-secondary" (click)="closeModal()">Close </button>
             </div>

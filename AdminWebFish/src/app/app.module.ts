@@ -9,7 +9,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
+import { OrderModule } from 'ngx-order-pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -70,8 +70,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     TabsModule.forRoot(),
     ChartsModule,
     ModalModule.forRoot(),
-    NgxPaginationModule
-
+    NgxPaginationModule,
+    OrderModule
   ],
   declarations: [
     AppComponent,
