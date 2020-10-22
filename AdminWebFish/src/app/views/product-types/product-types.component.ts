@@ -20,6 +20,7 @@ export class ProductTypesComponent implements OnInit {
   product: Product = { productType: { id: 0 } } as Product;
   page: number = 1;
   itemsPerPage: number = 3;
+  filter = '';
   constructor(private productService: ProductService, private productTypeService: ProductTypeService, private pnotify: PnotifyService) { }
 
   private loadingData() {
@@ -105,6 +106,16 @@ export class ProductTypesComponent implements OnInit {
         } else {
           this.pnotify.showFailure('Failed', 'Update failed !')
         }
+      });
+    }
+  }
+
+  showByFilter() {
+    if (this.filter === '') {
+      this.loadingData();
+    } else {
+      this.productTypeService.filter(this.filter).subscribe(res => {
+        this.productTypes = res;
       });
     }
   }

@@ -22,6 +22,17 @@ export class ProductService {
     const url = `${this.apiService.URL.productsOne}/${id}`;
     return this.http.get<Product>(url);
   }
+
+  filter(filter: string): Observable<[Product]> {
+    return this.http.get<[Product]>(`${this.apiService.URL.searchFish}/${filter}`);
+  }
+  // page(): Observable<[number]> {
+  //   return this.http.get<[number]>(`${this.apiService.URL.products}/numberLine`);
+  // }
+
+  // getData(start: number): Observable<[Product]> {
+  //   return this.http.get<[Product]>(`${this.apiService.URL.products}/getData/${start}`);
+  // }
   add(pro, photo): Observable<Product> {
     const fd = new FormData();
     fd.append('proCode', pro.proCode);

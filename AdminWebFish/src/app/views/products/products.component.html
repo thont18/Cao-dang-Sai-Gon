@@ -10,7 +10,7 @@
             <div class="form-group row">
               <div class="col-sm-10">
                 <input type="text" maxlength="100" autocomplete="off" class="form-control" name="search"
-                  placeholder="Enter Search ?">
+                  (change)="showByFilter()" [(ngModel)]="filter" placeholder="Enter Search ?">
               </div>
               <button class="btn btn-warning col-sm-2"><i class="fa fa-search"></i></button>
             </div>
@@ -126,7 +126,7 @@
                     </option>
                   </select>
                 </div>
-              </div>  
+              </div>
               <!-- Price -->
               <div class="form-group row">
                 <label for="price" class="col-sm-3 col-form-label control-label">Price (VND): </label>
@@ -147,7 +147,7 @@
 
             </div>
             <div class="float-right">
-              <button type="submit" class="btn btn-success"  (click)="save()">Save
+              <button type="submit" class="btn btn-success" (click)="save()">Save
                 Changes</button>
               <button type="submit" class="btn btn-secondary" (click)="closeModal()">Close </button>
             </div>

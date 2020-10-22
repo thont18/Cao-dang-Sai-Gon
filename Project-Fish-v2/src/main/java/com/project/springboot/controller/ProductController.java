@@ -33,6 +33,7 @@ import com.project.springboot.services.ProductTypeService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping
 public class ProductController {
 	@Autowired
 	private ProductService productService;
@@ -51,8 +52,8 @@ public class ProductController {
 	//Get one fish
 	@GetMapping("/fish/getOneFish/{id}")
 	public Product getOneFish(@PathVariable("id") Integer id) {
-		return this.productService.findById(id).orElseThrow(() -> 
-		new ResourceNotFoundException2("Not found Fish with id: " + id));
+		return this.productService.findById(id).orElseThrow(() ->
+				new ResourceNotFoundException2("Not found Fish with id: " + id));
 	}
 
 //	@RequestMapping(value = "/products/productType/{id}", method = RequestMethod.POST)
@@ -72,9 +73,9 @@ public class ProductController {
 	// Modify post pro
 	@PostMapping(value = "/fish/createFish", consumes = "multipart/form-data")
 	public ResponseEntity<?> createProducts(
-			@RequestParam("proCode") String proCode, 
+			@RequestParam("proCode") String proCode,
 			@RequestParam("name") String name,
-			@RequestParam("proTypeId") Integer proTypeId, 
+			@RequestParam("proTypeId") Integer proTypeId,
 			@RequestParam("price") Double price,
 			@RequestParam("photo") MultipartFile photo,
 			@RequestParam("createdBy") String createdBy,
@@ -111,12 +112,12 @@ public class ProductController {
 
 	@PutMapping(value = "/fish/updateFish/{id}", consumes = "multipart/form-data")
 	public Product updateProducts(
-			@PathVariable("id") Integer id, 
+			@PathVariable("id") Integer id,
 			@RequestParam("proCode") String proCode,
-			@RequestParam("name") String name, 
+			@RequestParam("name") String name,
 			@RequestParam("proTypeId") Integer proTypeId,
 			@RequestParam("price") Double price,
-			@RequestParam("photoEdit") MultipartFile photo,			
+			@RequestParam("photoEdit") MultipartFile photo,
 			@RequestParam("modifiedBy") String modifiedBy,
 			@RequestParam("description") String description) throws JsonMappingException, JsonProcessingException {
 		if (photo.isEmpty()) {
@@ -146,11 +147,11 @@ public class ProductController {
 	//NO IMAGE
 	@PutMapping(value = "/fish/updateFishNoImage/{id}", consumes = "multipart/form-data")
 	public ResponseEntity<?> updateProductsNoImage(
-			@PathVariable("id") Integer id, 
+			@PathVariable("id") Integer id,
 			@RequestParam("proCode") String proCode,
-			@RequestParam("name") String name, 
+			@RequestParam("name") String name,
 			@RequestParam("proTypeId") Integer proTypeId,
-			@RequestParam("price") Double price,			
+			@RequestParam("price") Double price,
 			@RequestParam("modifiedBy") String modifiedBy,
 			@RequestParam("description") String description) {
 
@@ -168,7 +169,7 @@ public class ProductController {
 		createPro.setDateCreated(createPro.getDateCreated());
 		createPro.setImage(createPro.getImage());
 		this.productService.save(createPro);
-		
+
 		Product savePro = this.productService.save(createPro);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.set("MyHeader", "MyValue");
@@ -181,5 +182,10 @@ public class ProductController {
 	public void deleteProduct(@PathVariable("id") Integer id) {
 		Product product = productService.findById(id).get();
 		productService.delete(product.getId());
+	}
+
+	@GetMapping("/searchProducts/{name}")
+	public List<Product> findProductByName(@PathVariable("name") String name) {
+		return productService.findProductByName(name);
 	}
 }

@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
   imagePreview: String = '';
   public imgPath: any;
   imgUrl: any;
+  filter = '';
   constructor(private productService: ProductService, private productTypeService: ProductTypeService, private pnotify: PnotifyService) { }
 
   private loadingData() {
@@ -96,8 +97,8 @@ export class ProductsComponent implements OnInit {
     this.pnotify.showConfirm('Confirm', 'Are you sure ?', yes => {
       if (yes) {
         this.productService.delete(id).subscribe(res => {
-            this.pnotify.showSuccess('Success', 'Delete successfully !');
-            this.loadingData();
+          this.pnotify.showSuccess('Success', 'Delete successfully !');
+          this.loadingData();
         });
       }
     });
@@ -140,6 +141,16 @@ export class ProductsComponent implements OnInit {
           }
         });
       }
+    }
+  }
+
+  showByFilter() {
+    if (this.filter === '') {
+      this.loadingData();
+    } else {
+      this.productService.filter(this.filter).subscribe(res => {
+        this.products = res;
+      });
     }
   }
 }

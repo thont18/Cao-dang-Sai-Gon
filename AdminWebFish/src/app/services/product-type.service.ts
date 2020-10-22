@@ -28,4 +28,19 @@ export class ProductTypeService {
     const url = `${this.apiService.URL.productTypes}/${proType.id}`;
     return this.http.put<ProductType>(url, proType);
   }
+
+  filter(filter: string): Observable<[ProductType]> {
+    return this.http.get<[ProductType]>(`${this.apiService.URL.searchFishType}/${filter}`);
+  }
+  // page(): Observable<[number]> {
+  //   return this.http.get<[number]>(`${this.apiService.URL.productTypes}/numberLine`);
+  // }
+
+  // getData(start: number): Observable<[ProductType]> {
+  //   return this.http.get<[ProductType]>(`${this.apiService.URL.productTypes}/getData/${start}`);
+  // }
+
+  // pageForFilter(name: string): Observable<[number]> {
+  //   return this.http.get<[number]>(`${this.apiService.URL.productTypes}/numberLine/${name}`);
+  // }
 }

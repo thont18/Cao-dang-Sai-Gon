@@ -12,7 +12,7 @@
             <div class="form-group row">
               <div class="col-sm-10">
                 <input type="text" maxlength="100" autocomplete="off" class="form-control" name="search"
-                  placeholder="Enter Search ?">
+                  (change)="showByFilter()" [(ngModel)]="filter" placeholder="Enter Search ?">
               </div>
               <button class="btn btn-warning col-sm-2"><i class="fa fa-search"></i></button>
             </div>
@@ -77,7 +77,8 @@
               <div class="col-sm-9">
                 <input type="text" maxlength="20" #productTypeCode="ngModel" required autocomplete="off"
                   class="form-control" name="ptypCode" [(ngModel)]="productType.ptypCode" placeholder="PT-number">
-                <span class="help-block text-danger" *ngIf="productTypeCode.invalid && productTypeCode.touched"> (Code is
+                <span class="help-block text-danger" *ngIf="productTypeCode.invalid && productTypeCode.touched"> (Code
+                  is
                   required)</span>
                 <span class="help-block text-danger" *ngIf="test() && productTypeCode.touched">Code was used</span>
               </div>
@@ -107,7 +108,8 @@
               [ngClass]="{'disabled': productName.errors?.required}"
               (click)="save()">Save Changes</button> -->
 
-            <button type="submit" class="btn btn-success" [disabled]="productTypeForm.invalid"  (click)="save()">Save Changes</button>
+            <button type="submit" class="btn btn-success" [disabled]="productTypeForm.invalid" (click)="save()">Save
+              Changes</button>
             <button type="submit" class="btn btn-secondary" (click)="closeModal()">Close </button>
           </div>
         </form>
