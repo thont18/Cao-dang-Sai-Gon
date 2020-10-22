@@ -97,6 +97,7 @@ export class ProductsComponent implements OnInit {
 
   delete(e: Event, id: number) {
     e.preventDefault();
+    // pinotify delete
     this.pnotify.showConfirm('Confirm', 'Are you sure ?', yes => {
       if (yes) {
         this.productService.delete(id).subscribe(res => {

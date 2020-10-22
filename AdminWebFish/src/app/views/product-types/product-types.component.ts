@@ -67,6 +67,7 @@ export class ProductTypesComponent implements OnInit {
 
   delete(e: Event, id: number) {
     e.preventDefault();
+    // pinotify delete
     this.pnotify.showConfirm('Confirm', 'Are you sure ?', yes => {
       if (yes) {
         for (let i = 0; i < this.products.length; i++) {
@@ -93,6 +94,7 @@ export class ProductTypesComponent implements OnInit {
     if (this.productType.id === 0) {
       this.productTypeService.add(this.productType).subscribe(res => {
         if (Error) {
+          // pinotify add
           this.pnotify.showSuccess('Success', 'Insert successfully !');
           this.closeModal();
           this.loadingData();
