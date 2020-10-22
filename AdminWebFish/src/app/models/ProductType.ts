@@ -1,5 +1,5 @@
 export interface ProductType {
-    id : number
+    id: number;
     ptypCode: string;
     name: string;
 }

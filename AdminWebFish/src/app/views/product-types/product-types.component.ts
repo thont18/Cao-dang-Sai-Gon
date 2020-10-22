@@ -16,10 +16,14 @@ export class ProductTypesComponent implements OnInit {
   @ViewChild('productTypeModal', { static: false }) productTypeModal: ModalDirective;
   productType = {} as ProductType;
   productTypes: ProductType[] = [];
-  products: Product[] = []
+  products: Product[] = [];
   product: Product = { productType: { id: 0 } } as Product;
   page: number = 1;
   itemsPerPage: number = 3;
+  // Sorting data
+  key: string = 'ptypCode';
+  reverse: boolean = false;
+
   constructor(private productService: ProductService, private productTypeService: ProductTypeService, private pnotify: PnotifyService) { }
 
   private loadingData() {
@@ -28,11 +32,11 @@ export class ProductTypesComponent implements OnInit {
     });
   }
 
-  test():Boolean {
-    this.productTypes.forEach(e=> {
-      if(e.ptypCode.localeCompare( this.productType.ptypCode)){
+  test(): Boolean {
+    this.productTypes.forEach(e => {
+      if (e.ptypCode.localeCompare(this.productType.ptypCode)) {
         return true;
-      } 
+      }
     });
     return false;
   }
@@ -45,7 +49,7 @@ export class ProductTypesComponent implements OnInit {
   }
 
   showAdd() {
-    this.productType = { id: 0 } as ProductType
+    this.productType = { id: 0 } as ProductType;
     this.productTypeModal.show();
   }
 
@@ -55,57 +59,62 @@ export class ProductTypesComponent implements OnInit {
       this.productType = res;
       this.productTypeModal.show();
     });
-  };
+  }
 
   closeModal() {
     this.productTypeModal.hide();
-  };
+  }
 
   delete(e: Event, id: number) {
     e.preventDefault();
-    this.pnotify.showConfirm("Confirm", "Are you sure ?", yes => {
+    this.pnotify.showConfirm('Confirm', 'Are you sure ?', yes => {
       if (yes) {
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].productType.id === id) {
-            this.pnotify.showFailure('Failed', 'Delete failed, this type had used!')
+            this.pnotify.showFailure('Failed', 'Delete failed, this type had used!');
             return;
           }
         }
 
         this.productTypeService.delete(id).subscribe(res => {
           if (Error) {
-            this.pnotify.showSuccess('Success', 'Delete successfully !')
+            this.pnotify.showSuccess('Success', 'Delete successfully !');
             this.loadingData();
           } else {
-            this.pnotify.showFailure('Failed', 'Delete failed !')
+            this.pnotify.showFailure('Failed', 'Delete failed !');
           }
         });
       }
-    })
+    });
 
     this.loadingData();
-  };
+  }
   save() {
     if (this.productType.id === 0) {
       this.productTypeService.add(this.productType).subscribe(res => {
         if (Error) {
-          this.pnotify.showSuccess('Success', 'Insert successfully !')
+          this.pnotify.showSuccess('Success', 'Insert successfully !');
           this.closeModal();
           this.loadingData();
         } else {
-          this.pnotify.showFailure('Failed', 'Insert failed !')
+          this.pnotify.showFailure('Failed', 'Insert failed !');
         }
       });
     } else {
       this.productTypeService.update(this.productType).subscribe(res => {
         if (Error) {
-          this.pnotify.showSuccess('Success', 'Update successfully !')
+          this.pnotify.showSuccess('Success', 'Update successfully !');
           this.closeModal();
           this.loadingData();
         } else {
-          this.pnotify.showFailure('Failed', 'Update failed !')
+          this.pnotify.showFailure('Failed', 'Update failed !');
         }
       });
     }
+  }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 }

@@ -1,7 +1,7 @@
 <p>service-type works!</p>
 <div class="card border-danger">
   <div class="card-header table-primary">
-    <span style="font-size: 30px; font-weight: bold;"><i class="fa fa-inbox"></i>Fish types</span>
+    <span style="font-size: 30px; font-weight: bold;"><i class="fa fa-inbox"></i> Fish Type List</span>
   </div>
 
   <div class="card-body">
@@ -29,14 +29,14 @@
       <thead class="table-primary text-center">
         <tr>
           <th>No.</th>
-          <th>Code</th>
-          <th>Name</th>
+          <th (click)="sort('ptypCode')">Code <i class="fa fa-sort"></i></th>
+          <th (click)="sort('name')">Name <i class="fa fa-sort"></i></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr class="text-center"
-          *ngFor="let row of productTypes| paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
+          *ngFor="let row of productTypes | orderBy : key : reverse | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
           <th>{{(itemsPerPage * (page - 1)) + (i+1)}}</th>
           <td>{{row.ptypCode}}</td>
           <td>{{row.name}}</td>

@@ -25,6 +25,10 @@ export class ProductsComponent implements OnInit {
   imagePreview: String = '';
   public imgPath: any;
   imgUrl: any;
+  // Sorting data
+  key: string = 'code';
+  reverse: boolean = false;
+
   constructor(private productService: ProductService, private productTypeService: ProductTypeService, private pnotify: PnotifyService) { }
 
   private loadingData() {
@@ -141,5 +145,10 @@ export class ProductsComponent implements OnInit {
         });
       }
     }
+  }
+
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 }
