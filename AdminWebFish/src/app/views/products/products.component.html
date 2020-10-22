@@ -139,7 +139,7 @@
                 <label for="price" class="col-sm-3 col-form-label control-label">Price (VND): </label>
                 <div class="col-sm-9">
                   <input type="number" #productPrice="ngModel" required maxlength="20" autocomplete="off"
-                    class="form-control" name="price" [(ngModel)]="product.price" placeholder="name">
+                    class="form-control" min="0" name="price" [(ngModel)]="product.price" placeholder="name">
                   <span class="help-block text-danger" *ngIf="productPrice.invalid && productPrice.touched">
                     (Price is required)</span>
                 </div>
