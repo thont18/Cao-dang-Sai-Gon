@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit {
     this.loadingData();
     // console.log(this.product.productType.id);
   }
-
+  
   showAdd() {
     this.product = { id: 0, productType: { id: 0 } } as Product;
     this.productModal.show();

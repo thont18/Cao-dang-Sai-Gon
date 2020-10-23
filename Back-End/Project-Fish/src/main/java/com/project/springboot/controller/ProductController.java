@@ -41,14 +41,14 @@ public class ProductController {
 	private ProductTypeService ptService;
 	@Autowired
 	private FileStorageService fileStorageService;
-
-	//Get All Fish
+	
+	//Get Fish list
 	@GetMapping("/fish/getAllFish")
 	public List<Product> listFish() {
 		return this.productService.findAll();
 	}
 
-	//Get one fish
+	//Get fish by id
 	@GetMapping("/fish/getOneFish/{id}")
 	public Product getOneFish(@PathVariable("id") Integer id) {
 		return this.productService.findById(id).orElseThrow(() -> 

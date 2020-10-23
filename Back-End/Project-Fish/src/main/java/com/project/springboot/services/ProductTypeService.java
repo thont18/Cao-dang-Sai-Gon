@@ -16,28 +16,28 @@ import java.util.List;
 @Service
 @Transactional
 public class ProductTypeService {
-<<<<<<< HEAD
-	@Autowired
-	private ProductTypeRepository productTypeRepository;
-
-	public List<ProductType> findAll() {
-		return productTypeRepository.findAll();
-	}
-
-	public ProductType findById(Integer id) {
-		return productTypeRepository.findById(id).get();
-	}
-
-	public ProductType save(ProductType productType) {
-		return productTypeRepository.save(productType);
-	}
-
-	public void delete(Integer id) {
-		productTypeRepository.deleteById(id);
-	}
-
+//<<<<<<< HEAD
+//	@Autowired
+//	private ProductTypeRepository productTypeRepository;
 //
-=======
+//	public List<ProductType> findAll() {
+//		return productTypeRepository.findAll();
+//	}
+//
+//	public ProductType findById(Integer id) {
+//		return productTypeRepository.findById(id).get();
+//	}
+//
+//	public ProductType save(ProductType productType) {
+//		return productTypeRepository.save(productType);
+//	}
+//
+//	public void delete(Integer id) {
+//		productTypeRepository.deleteById(id);
+//	}
+//
+////
+//=======
     @Autowired
     private ProductTypeRepository productTypeRepository;
 
@@ -58,7 +58,6 @@ public class ProductTypeService {
     }
 
 
->>>>>>> CaoMinhTuoi
 //    public List<ProductType> getData(@PathVariable("start") int start) {
 //        Pageable page = (Pageable) PageRequest.of(start, 5, Sort.by("id").ascending());
 //        return ProductTypeRepository.getData(page);
