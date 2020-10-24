@@ -28,4 +28,9 @@ export class ProductTypeService {
     const url = `${this.apiService.URL.productTypes}/${proType.id}`;
     return this.http.put<ProductType>(url, proType);
   }
+
+  filter(filter: string): Observable<[ProductType]> {
+    // tslint:disable-next-line: no-unused-expression
+    return this.http.get<[ProductType]>(`${this.apiService.URL.searchFishType}/${filter}`);
+  }
 }

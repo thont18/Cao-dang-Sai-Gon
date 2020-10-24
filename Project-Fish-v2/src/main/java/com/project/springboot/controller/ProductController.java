@@ -182,4 +182,9 @@ public class ProductController {
 		Product product = productService.findById(id).get();
 		productService.delete(product.getId());
 	}
+	
+	@GetMapping("/searchProducts/{name}")
+	public List<Product> findProductByName(@PathVariable("name") String name) {
+		return productService.findProductByName(name);
+	}
 }

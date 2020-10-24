@@ -74,4 +74,8 @@ export class ProductService {
   uploadImage(data: FormData): Observable<String> {
     return this.http.post<String>(`${this.apiService.baseURL}uploadFile`, data);
   }
+
+  filter(filter: string): Observable<[Product]> {
+    return this.http.get<[Product]>(`${this.apiService.URL.searchFish}/${filter}`);
+  }
 }

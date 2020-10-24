@@ -55,6 +55,12 @@ public class ProductTypeController {
 		ProductType productType = productTypeService.findById(id);
 		productTypeService.delete(productType.getId());
 	}
+	
+	@GetMapping("/searchProductTypes/{name}")
+    public List<ProductType> findProductTypeByName(@PathVariable("name") String name) {
+		return productTypeService.findProductTypeByName(name);
+    }
+
 
 //    @GetMapping("/getData/{start}")
 //    public List<ProductType> getData(@PathVariable("start") int start) {

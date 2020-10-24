@@ -1,17 +1,16 @@
 package com.project.springboot.services;
 
-import com.project.springboot.dao.ProductTypeRepository;
-import com.project.springboot.entity.ProductType;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.transaction.Transactional;
-import java.awt.print.Pageable;
-import java.util.ArrayList;
-import java.util.List;
+import com.project.springboot.dao.ProductTypeRepository;
+import com.project.springboot.entity.ProductType;
 
 @Service
 @Transactional
@@ -75,5 +74,24 @@ public class ProductTypeService {
 //		return ProductTypeRepository.filterByNameOrCode(name,
 //				PageRequest.of(page, 5, Sort.by("name").ascending()));
 //	}
+	
+	public List<Integer> getNumberLineForFilter(@PathVariable("name") String name) {
+		int num = productTypeRepository.getNumberLineForFilter(name);
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		if (num % 5 == 0) {
+			for (int i = 0; i < num / 5; i++) {
+				list.add(i);
+			}
+		} else {
+			for (int i = 0; i < (num / 5 + 1); i++) {
+				list.add(i);
+			}
+		}
+		return list;
+	}
+
+	public List<ProductType> findProductTypeByName(@PathVariable("name") String name) {
+		return productTypeRepository.findProductTypeByName(name);
+	}
 
 }

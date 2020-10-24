@@ -23,6 +23,7 @@ export class ProductTypesComponent implements OnInit {
   // Sorting data
   key: string = 'ptypCode';
   reverse: boolean = false;
+  filter = '';
 
   constructor(private productService: ProductService, private productTypeService: ProductTypeService, private pnotify: PnotifyService) { }
 
@@ -118,5 +119,15 @@ export class ProductTypesComponent implements OnInit {
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+
+  showByFilter() {
+    if (this.filter === '') {
+      this.loadingData();
+    } else {
+      this.productTypeService.filter(this.filter).subscribe(res => {
+        this.productTypes = res;
+      });
+    }
   }
 }

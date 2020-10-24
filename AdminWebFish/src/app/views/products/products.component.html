@@ -1,6 +1,6 @@
 <div class="card border-danger">
   <div class="card-header table-primary">
-    <span style="font-size: 30px; font-weight: bold;"><i class="fa fa-github"></i> Fish list</span>
+    <span style="font-size: 30px; font-weight: bold;"><i class="fa fa-github"></i> Fish List</span>
   </div>
   <div class="card-body">
     <div class="my-2 mb-3 mr-4 ml-4">
@@ -9,8 +9,10 @@
           <form class="form-inline">
             <div class="form-group row">
               <div class="col-sm-10">
+                <!-- <input type="text" maxlength="100" autocomplete="off" class="form-control" name="search"
+                  placeholder="Enter Search ?"> -->
                 <input type="text" maxlength="100" autocomplete="off" class="form-control" name="search"
-                  placeholder="Enter Search ?">
+                  (change)="showByFilter()" [(ngModel)]="filter" placeholder="Enter fish name to search">
               </div>
               <button class="btn btn-warning col-sm-2"><i class="fa fa-search"></i></button>
             </div>
@@ -35,7 +37,7 @@
 
       </div>
 
-      <table class="table table-hover table-striped table-bordered mt-3 table-responsive">
+      <table class="table table-hover table-striped table-bordered table-sm mt-3">
         <thead class="table-primary text-center">
           <tr>
             <th class="text-truncate" style="vertical-align: middle; text-align: center;">No.</th>
@@ -45,13 +47,11 @@
             <th class="text-truncate" (click)="sort('name')" style="vertical-align: middle; text-align: center;">Name <i
                 class="fa fa-sort"></i></th>
             <th style="vertical-align: middle; text-align: center;">Image</th>
-            <th class="text-truncate" (click)="sort('price')" style="vertical-align: middle; text-align: center;">Price <i
-                class="fa fa-sort"></i></th>
-            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Created By</th>
-            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Updated By</th>
+            <th class="text-truncate" (click)="sort('price')" style="vertical-align: middle; text-align: center;">Price
+              <i class="fa fa-sort"></i></th>
             <th class="text-truncate" style="vertical-align: middle; text-align: center;">Created Date</th>
             <th class="text-truncate" style="vertical-align: middle; text-align: center;">Updated Date</th>
-            <th class="text-truncate" style="vertical-align: middle; text-align: center;">Edit</th>
+            <th class="text-truncate" style="vertical-align: middle; text-align: center;"></th>
           </tr>
         </thead>
         <tbody>
@@ -59,18 +59,18 @@
             *ngFor="let row of products | orderBy : key : reverse | paginate: { itemsPerPage: itemsPerPage, currentPage: page }; let i = index">
             <th style="vertical-align: middle; text-align: center;">{{(itemsPerPage * (page - 1)) + (i+1)}}</th>
             <td style="vertical-align: middle; text-align: center;">{{row.proCode}}</td>
-            <td style="vertical-align: middle; text-align: center;">{{row.productType.name}}</td>
-            <td style="vertical-align: middle; text-align: center;">{{row.name}}</td>
+            <td class="text-truncate" style="vertical-align: middle; text-align: center;">{{row.productType.name}}</td>
+            <td class="text-truncate" style="vertical-align: middle; text-align: center;">{{row.name}}</td>
             <td style="vertical-align: middle; text-align: center;"><img style="width: 200px;" src="{{row.image}}"></td>
-            <td style="vertical-align: middle; text-align: center;">{{row.price}}</td>
-            <td style="vertical-align: middle; text-align: center;">{{row.createdBy}}</td>
-            <td style="vertical-align: middle; text-align: center;">{{row.updatedBy}}</td>
-            <td style="vertical-align: middle; text-align: center;">{{row.dateCreated}}</td>
-            <td style="vertical-align: middle; text-align: center;">{{row.dateModified}}</td>
-            <td style="vertical-align: middle; text-align: center;">
+            <td style="vertical-align: middle; text-align: center;">{{row.price}} VND</td>
+            <td class="text-truncate" style="vertical-align: middle; text-align: center;">
+              {{row.dateCreated | date: 'dd/MM/yyyy h:mm:ss'}}</td>
+            <td class="text-truncate" style="vertical-align: middle; text-align: center;">
+              {{row.dateModified  | date: 'dd/MM/yyyy h:mm:ss'}}</td>
+            <td class="text-truncate" style="vertical-align: middle; text-align: center;">
               <a href="" class="text-success" title="Repair" (click)="showEdit($event, row.id)"><i class="fa fa-edit"
                   style="font-size: 15px;"></i></a>
-              <a href="#" class="text-danger" (click)="delete($event, row.id)"><i class="fa fa-trash"
+              <a href="#" class="text-danger ml-2" (click)="delete($event, row.id)"><i class="fa fa-trash"
                   style="font-size: 15px;"></i></a>
             </td>
           </tr>
@@ -116,8 +116,9 @@
               <!-- Hinh -->
               <div class="form-group row">
                 <label for="name" class="col-sm-3 col-form-label">Image: </label>
-                <img [src]="imgUrl" alt="" style="width: 100px; height: 100px;" />
+                
                 <div class="col-sm-9">
+                  <img [src]="imgUrl" alt="" style="width: 100px; height: 100px;" />
                   <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept="image/*"
                     class="form-control-file" placeholder="Image" (change)="reviewPhoto(fileUpload)" required>
                 </div>

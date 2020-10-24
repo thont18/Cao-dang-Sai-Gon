@@ -9,6 +9,8 @@ export class ApiService {
   constructor() { }
   baseURL = 'http://localhost:7777/';
   URL = {
+    searchFish : this.baseURL + 'searchProducts',
+    searchFishType : this.baseURL + 'searchProductTypes',
     customers : this.baseURL + 'customers',
     products : this.baseURL + 'fish/getAllFish',
     productsOne : this.baseURL + 'fish/getOneFish',

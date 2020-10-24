@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
   productTypes: ProductType[] = [];
   productType: ProductType = {} as ProductType;
   page: number = 1;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 3;
   selectedFile: File = null;
   imagePreview: String = '';
   public imgPath: any;
@@ -28,6 +28,7 @@ export class ProductsComponent implements OnInit {
   // Sorting data
   key: string = 'code';
   reverse: boolean = false;
+  filter = '';
 
   constructor(private productService: ProductService, private productTypeService: ProductTypeService, private pnotify: PnotifyService) { }
 
@@ -151,5 +152,15 @@ export class ProductsComponent implements OnInit {
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+
+  showByFilter() {
+    if (this.filter === '') {
+      this.loadingData();
+    } else {
+      this.productService.filter(this.filter).subscribe(res => {
+        this.products = res;
+      });
+    }
   }
 }
